@@ -19,7 +19,7 @@ function init() {
 
   const getModeTitle = function(integerToRoman) {
     return integerToRoman ? 'Integer To Roman' : 'Roman To Integer';
-  }
+  };
 
   // Now, the convertion operation does only perform the operation. 
   // Things we have extracted to this listener: 
@@ -67,7 +67,7 @@ const convertRomanToInteger = function(roman) {
     return response;
   }
 
-  var arr = ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
+  var arr = ['I, 'V', 'X', 'L', 'C', 'D', 'M'];
 
   var values = {
     I: 1,
