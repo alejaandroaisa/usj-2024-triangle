@@ -13,6 +13,41 @@ function init() {
   var inputArea = document.querySelector('input[type=\'text\']');
 
 
+// Initialize Google Analytics tracking
+function gtag(){dataLayer.push(arguments);}
+
+// Mode Change Event
+modeCheckbox.addEventListener('change', function(e) {
+  header.innerHTML = getModeTitle(e.target.checked);
+  gtag('event', 'mode_change', {
+    'event_category': 'interaction',
+    'event_label': e.target.checked ? 'Integer to Roman' : 'Roman to Integer'
+  });
+});
+
+// Conversion Event
+convertButton.addEventListener('click', function() {
+  var inputValue = inputArea.value;
+  var convertion = modeCheckbox.checked ? convertIntegerToRoman(inputValue) : convertRomanToInteger(inputValue);
+  if (convertion.result) {
+    outputArea.innerHTML = convertion.value;
+    gtag('event', 'conversion', {
+      'event_category': 'interaction',
+      'event_label': modeCheckbox.checked ? 'Integer to Roman' : 'Roman to Integer',
+      'value': inputValue
+    });
+  } else {
+    alert(convertion.message);
+    gtag('event', 'conversion_error', {
+      'event_category': 'error',
+      'event_label': convertion.message,
+      'value': inputValue
+    });
+  }
+});
+
+
+
   modeCheckbox.addEventListener('change', function(e) {
     header.innerHTML = getModeTitle(e.target.checked);
   });
